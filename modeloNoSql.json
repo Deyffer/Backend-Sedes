@@ -1,0 +1,84 @@
+{
+    "Consultorios": [
+        {
+            "idConsultorios": {
+                "type": "number",
+                "unique": true,
+                "required": true
+            },
+            "TipoConsultorio": {
+                "type": "string",
+                "unique": false,
+                "required": true
+            },
+            "codigo": {
+                "type": "string",
+                "unique": true,
+                "required": true
+            },
+            "estado": {
+                "type": "number",
+                "unique": false,
+                "required": true
+            },
+            "observaciones": {
+                "type": "string",
+                "unique": false,
+                "required": false
+            },
+            "Sede": {
+                "idSedes": {
+                    "type": "number",
+                    "unique": true,
+                    "required": true
+                },
+                "nombre": {
+                    "type": "string",
+                    "unique": false,
+                    "required": true
+                },
+                "direccion": {
+                    "type": "string",
+                    "unique": false,
+                    "required": true
+                },
+                "Ciudad": {
+                    "idUbicaciones": {
+                        "type": "number",
+                        "unique": true,
+                        "required": true
+                    },
+                    "nombre": {
+                        "type": "string",
+                        "unique": false,
+                        "required": true
+                    },
+                    "codigo": {
+                        "type": "string",
+                        "unique": true,
+                        "required": true
+                    },
+                    "Departamento": [
+                        {
+                            "idDepartamento": {
+                                "type": "number",
+                                "unique": true,
+                                "required": true
+                            },
+                            "nombre": {
+                                "type": "string",
+                                "unique": false,
+                                "required": true
+                            },
+                            "codigo": {
+                                "type": "string",
+                                "unique": true,
+                                "required": true
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
