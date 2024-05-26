@@ -4,11 +4,10 @@ const ConsultorioSchema = mongoose.Schema(
         codigo: {
             type: String,
             required: true,
-            unique: false
+            unique: true
         },
         tipoConsultorio: {
             type: String,
-            unique: false,
             required: true
         },
         estado: {
@@ -21,23 +20,20 @@ const ConsultorioSchema = mongoose.Schema(
         Sede: {
             nombre: {
                 type: String,
-                unique: false,
                 required: true
             },
             direccion: {
                 type: String,
-                unique: false,
                 required: true
             },
             Departamento: {
                 nombre: {
                     type: String,
-                    unique: false,
                     required: true
                 },
                 codigo: {
                     type: String,
-                    unique: false,
+                    unique: true,
                     required: true
                 },
                 Ciudad: {
@@ -47,7 +43,7 @@ const ConsultorioSchema = mongoose.Schema(
                     },
                     codigo: {
                         type: String,
-                        unique: false,
+                        unique: true,
                         required: true
                     }
                 }

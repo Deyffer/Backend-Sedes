@@ -2,12 +2,13 @@ const express = require("express");
 const router = express.Router();
 const Sede = require("../models/sede");
  
-router.post("/", async (req, res) => {
+router.post("/agregar", async (req, res) => {
     const sede = new Sede({
         codigo: req.body.codigo,
         nombre: req.body.nombre,
         direccion: req.body.direccion,
-        Consultorio: req.body.Consultorio,
+        ciudad: req.body.ciuddad,
+        departamento: req.body.departamento
     });
 
     sede.save()
@@ -19,7 +20,7 @@ router.post("/", async (req, res) => {
     });
 });
 
-router.get("/", (req, res) =>{
+router.get("/consultar", (req, res) =>{
     Sede.find()
     .then(sedes => {
         res.json(sedes);
@@ -42,21 +43,11 @@ router.delete("/:id", async (req, res) => {
 router.patch("/:id", async (req, res) =>{
     Sede.findByIdAndUpdate(req.params.id, req.body)
     .then(result =>{
-        res.json(resutl);
+        res.json(result);
     })
     .catch(err =>{
         res.status(500).json({ message: err});
     });
-});
-
-router.get("/nombre/:nombre", async (req, res) =>{
-    Sede.find({ nombre: req.params.nombre})
-    .then(sedes =>{
-        res.json(sedes);
-    })
-    .catch(err =>{
-        res.status(500).json({ message: err});
-    })
 });
 
 module.exports = router;

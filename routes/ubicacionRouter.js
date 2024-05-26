@@ -3,51 +3,57 @@ const router = express.Router();
 const Ubicacion = require("../models/ubicacion");
 const ubicacion = require("../models/ubicacion");
 
-router.get("/", (req, res) => {
-  Ubicacion
-    .find()
-    .then((data) => {
-      res.json(data);
-    }).catch((err) => {
-      res.json({ listo: err });
+
+
+router.get("/consultar", (req, res) => {
+  Ubicacion.find()
+    .then(ubicacion => {
+      res.json(ubicacion);
+    })
+    .catch(err => {
+      res.status(500).json({ message: err });
     });
 });
 
- router.delete("/:id", (req, res) => {
-    Ubicacion.deleteOne({_id: req.params.id })
-    .then((data) => {
-        res.json(data);
+router.delete("/:id", async (req, res) => {
+  Ubicacion.findByIdAndDelete({ _id: req.params.id })
+    .then(result => {
+      res.json(result);
     })
 
-.catch((err) => {
-    res.json({ listo: err });
-});
+    .catch(err => {
+      res.status(500).json({ message: err });
+    });
 
-}); 
-
-router.put("/:id", async (req, res) => {
-  try {
-    const ubicacion = await Ubicacion.findByIdAndUpdate(req.params.id, req.body,{new: true});
-    res.json(ubicacion);
-  } catch (error) {
-    console.error(error);
-  }
 });
 
 
-
-
-router.post("/", async (req, res) => {
-  console.log("la buena");
-  try {
-    const ubicacion = new Ubicacion(req.body);
-    await ubicacion.save();
-    res.json(ubicacion)
-  } catch (error) {
-    console.error(error);
-  }
+router.post("/agregar", async (req, res) => {
+  const ubicacion = new Ubicacion({
+    nombre: req.body.nombre,
+    codigo: req.body.codigo,
+    departamento: req.body.departamento
+  });
   
+  ubicacion.save()
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.json({ message: err });
+    });
 });
+
+router.patch("/:id", async (req, res) =>{
+  ubicacion.findByIdAndUpdate(req.params.id, req.body)
+  .then(result =>{
+      res.json(result);
+  })
+  .catch(err =>{
+      res.status(500).json({ message: err});
+  });
+});
+
 
 
 

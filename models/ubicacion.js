@@ -1,19 +1,19 @@
 const mongoose = require("mongoose");
 const ubicacionschema = mongoose.Schema(
     {
-        departamentoNombre: {
+        nombre: {
             type: String,
             required: true
         },
         codigo: {
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
-        ciudad: [{
+        departamento: [{
             
             nombre: {
                 type: String,
-                unique: false,
                 required: true
             },
             codigo: {

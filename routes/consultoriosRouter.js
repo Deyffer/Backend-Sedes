@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const Consultorio = require("../models/consultorio");
 
-router.post("/", async (req, res) => {
+router.post("/agregar", async (req, res) => {
     const consultorio = new Consultorio({
         codigo: req.body.codigo,
         tipoConsultorio: req.body.tipoConsultorio,
@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
 
 //ruta get para obtener todos los consultorios
 // router.get("/:id", async (req, res) => {
-router.get("/", (req, res) => {
+router.get("/consultar", (req, res) => {
     Consultorio.find()
         .then(consultorios => {
             res.json(consultorios);
@@ -55,15 +55,5 @@ router.patch("/:id", async (req, res) => {
         })
 })
 
-//Ruta pa buscar los consultorios por marca
-router.get("/marca/:marca", async (req, res) => {
-    Consultorio.find({ marca: req.params.marca })
-        .then(consultorios => {
-            res.json(consultorios);
-        })
-        .catch(err => {
-            res.status(500).json({ message: err });
-        })
-})
 
 module.exports = router;

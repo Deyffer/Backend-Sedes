@@ -9,26 +9,33 @@ const SedeSchema = mongoose.Schema(
         nombre: {
             type: String,
             required: true,
-            unique: false
         },
         direccion: {
             type: String,
             required: true,
-            unique: false
         },
-        consultorios: [{
-            tipoConsultorio: {
+        ciudad: {
+            nombre: {
                 type: String,
                 required: true,
-                unique: false
             },
-            estado: {
-                type: Number,
-                required: true
-            },
-            observaciones: {
-                type: String
+            codigo: {
+                type: String,
+                required: true,
+                unique: true
             }
+        },
+        departamento: [
+            {
+                nombre: {
+                    type: String,
+                    required: true,
+                },
+                codigo: {
+                    type: String,
+                    required: true,
+                    unique: true
+                }
         }]
     },
     {
