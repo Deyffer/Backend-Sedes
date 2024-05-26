@@ -7,7 +7,7 @@ router.post("/agregar", async (req, res) => {
         codigo: req.body.codigo,
         nombre: req.body.nombre,
         direccion: req.body.direccion,
-        ciudad: req.body.ciuddad,
+        ciudad: req.body.ciudad,
         departamento: req.body.departamento
     });
 
