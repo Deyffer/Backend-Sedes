@@ -34,8 +34,8 @@ router.get("/consultar", (req, res) => {
 });
 
 //Ruta para eliminar un consultorio
-router.delete("/:id", async (req, res) => {
-    Consultorio.findByIdAndDelete(req.params.id)
+router.delete("/:codigo", async (req, res) => {
+    Consultorio.findByIdAndDelete(req.params.codigo)
         .then(result => {
             res.json(result);
         })
@@ -45,8 +45,8 @@ router.delete("/:id", async (req, res) => {
 })
 
 //Ruta para actualizar un consultorio
-router.patch("/:id", async (req, res) => {
-    Consultorio.findByIdAndUpdate(req.params.id, req.body)
+router.patch("/:codigo", async (req, res) => {
+    Consultorio.findByIdAndUpdate(req.params.codigo, req.body)
         .then(result => {
             res.json(result);
         })
