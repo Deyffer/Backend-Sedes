@@ -33,16 +33,17 @@ router.get("/consultar", (req, res) => {
         });
 });
 
-//Ruta para eliminar un consultorio
 router.delete("/:codigo", async (req, res) => {
-    Consultorio.findByIdAndDelete(req.params.codigo)
-        .then(result => {
-            res.json(result);
-        })
-        .catch(err => {
-            res.status(500).json({ message: err });
-        })
-})
+    try {
+        const consultorio = await Consultorio.findOneAndDelete({ codigo: req.params.codigo });
+        if (!consultorio) {
+            return res.status(404).json({ message: "Consultorio no encontrado" });
+        }
+        res.json(consultorio);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 //Ruta para actualizar un consultorio
 router.patch("/:codigo", async (req, res) => {
